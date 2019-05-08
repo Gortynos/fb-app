@@ -34,46 +34,30 @@
 });
 
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-
-var finished_rendering = function() {
-  console.log("finished rendering plugins");
-  var spinner = document.getElementById("spinner");
-  spinner.removeAttribute("style");
-  spinner.removeChild(spinner.childNodes[0]);
-}
-FB.Event.subscribe('xfbml.render', finished_rendering);
 </script>
-<div id="spinner"
-    style="
-        background: #4267b2;
-        border-radius: 5px;
-        color: white;
-        height: 40px;
-        text-align: center;
-        width: 250px;">
-    Loading
-    <div
-    class="fb-login-button"
-    data-max-rows="1"
-    data-size="large"
-    data-button-type="continue_with"
-    data-use-continue-as="true"
-    ></div>
-</div>
 
+<div onclick="LogIn()" class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-
-
-
-
-<div id="status">
-</div>
 </center>
+<script>
+
+LogIn = function() {
+    FB.login(function(response) {
+    	if (response.authResponse) {
+     FB.api('/me', function(response) {
+	var message = "Dobrze Cię widzieć, " + response.name;
+	            console.log(message);
+	var tekst = document.getElementById("fb");
+	     tekst.innerHTML=message;
+     });
+      } else {
+        alert('Logowanie anulowane.');
+      }
+    });
+    return false;
+  };
+</script>
+
 <div>
     <hr>
     <div class="piotr"><b>Strona wykonana przez Piotra Bujalskiego</b></div>
