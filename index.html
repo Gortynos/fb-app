@@ -20,8 +20,7 @@ text-align: center;
     if (response.status === 'connected') {
       testAPI();
     } else {
-        '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>'
+        echo '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>'
       document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplickacji';
     }
   }
@@ -70,8 +69,7 @@ text-align: center;
 
         
 
-<div id="status">
-</div>
+
 
 <div>
     <hr>
