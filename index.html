@@ -64,8 +64,7 @@ text-align: center;
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
         tekst = '<p style="font-size:25px;">Witamy <b> ' + response.name + '</br>'+ response.id + '</br>'+ response.email + ' </b>!</p>'+ '</br>'+ response.profile_pic + ' </b>!</p>'
-      document.getElementById('status').innerHTML =
-        '<p style="font-size:25px;">Witamy <b> ' + response.name + '</b>!</p>';
+      document.getElementById('status').innerHTML = tekst;
     });
   }
 </script>
