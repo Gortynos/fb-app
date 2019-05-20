@@ -20,7 +20,10 @@ text-align: center;
     if (response.status === 'connected') {
       testAPI();
     } else {
-
+        </script>
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+        <script>
       document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplickacji';
     }
   }
@@ -60,6 +63,7 @@ text-align: center;
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+        tekst = '<p style="font-size:25px;">Witamy <b> ' + response.name + '</br>'+ response.id + '</br>'+ response.email + ' </b>!</p>'+ '</br>'+ response.profile_pic + ' </b>!</p>'
       document.getElementById('status').innerHTML =
         '<p style="font-size:25px;">Witamy <b> ' + response.name + '</b>!</p>';
     });
@@ -67,8 +71,7 @@ text-align: center;
 </script>
 
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+
 
 <div id="status">
 </div>
