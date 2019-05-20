@@ -20,7 +20,7 @@ text-align: center;
     if (response.status === 'connected') {
       testAPI();
     } else {
-       echo '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>'
+       
       document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplickacji';
     }
   }
@@ -64,7 +64,15 @@ text-align: center;
       document.getElementById('status').innerHTML = tekst;
     });
   }
-</script>        
+</script>       
+    <script>
+        if(!tekst):
+    </script>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>
+    <script>
+        zmienna = 1;
+        else zmienna=0;
+    </script>
 
 <div>
     <hr>
