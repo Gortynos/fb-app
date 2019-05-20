@@ -67,13 +67,14 @@ text-align: center;
 </script>       
     <script>
         if(!tekst):
-    </script>
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>
-    <script>
+        document.write("tekst1");
+     document.write('<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>');
+        document.write("tekst2");
         zmienna = 1;
-        else zmienna=0;
+        endif;
+        else document.write("else");
     </script>
-
+    <div id="status"></div>
 <div>
     <hr>
     <div class="piotr"><b>Strona wykonana przez Piotra Bujalskiego</b></div>
