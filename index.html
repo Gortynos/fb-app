@@ -12,8 +12,19 @@ text-align: center;
 </head>
 <body>
 <script>
+zmienna = 0;
+      function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
 
-  
+    if (response.status === 'connected') {
+        zmienna=1;
+      testAPI();
+    } else {
+        zmienna = 0;
+      document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplikacji';
+    }
+  }
 
 
   function checkLoginState() {
@@ -36,16 +47,7 @@ text-align: center;
     });
 
   };
-    function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
 
-    if (response.status === 'connected') {
-      testAPI();
-    } else {
-      document.getElementById('status').innerHTML = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> </br> Proszę zalogować sie do aplikacji';
-    }
-  }
 
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -64,6 +66,10 @@ text-align: center;
       document.getElementById('status').innerHTML = tekst;
     });
   }
+    
+    if(zmienna==0){
+        document.write('<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>');
+    }
 </script>       
     <div id="status"></div>
 <div>
