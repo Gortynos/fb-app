@@ -20,6 +20,7 @@ text-align: center;
       testAPI();
     } else {
       document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplikacji';
+        document.getElementById('zdj').innerHTML = "";
     }
   }
 
@@ -61,7 +62,7 @@ text-align: center;
       console.log('Successful login for: ' + response.name);
         tekst = '<p style="font-size:25px;">Witamy <b><br /> ' + response.first_name + '<br />'+ response.last_name + '<br />'+ response.id + '<br />'+ response.user_email + ' </b>!</p>'+ '<br />"'+ response.user_profile_pic + '"<br />'+ response.gender + '<br /><img src='+response.picture.data.url +>'!</p>'
       document.getElementById('status').innerHTML = tekst;
-      document.getElementById('zdj').innerHTML = "";
+      
     });
   }
     
