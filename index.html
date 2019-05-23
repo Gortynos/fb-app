@@ -12,16 +12,13 @@ text-align: center;
 </head>
 <body>
 <script>
-zmienna = 0;
       function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
 
     if (response.status === 'connected') {
-        zmienna=1;
       testAPI();
     } else {
-        zmienna = 0;
       document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplikacji';
     }
   }
@@ -64,6 +61,7 @@ zmienna = 0;
       console.log('Successful login for: ' + response.name);
         tekst = '<p style="font-size:25px;">Witamy <b> ' + response.name + '</br>'+ response.id + '</br>'+ response.user_email + ' </b>!</p>'+ '</br>'+ response.user_profile_pic + '</br>'+ response.gender + ' </b>!</p>'
       document.getElementById('status').innerHTML = tekst;
+      document.getElementById('zdj').innerHTML = "";
     });
   }
     
@@ -73,7 +71,9 @@ zmienna = 0;
     }
     else document.getElementById('zdj').innerHTML = ' ';
 </script>    
-    <div id="zdj"></div>
+    <div id="zdj">
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+    </div>
     <div id="status"></div>
 <div>
     <hr>
