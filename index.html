@@ -12,66 +12,39 @@ text-align: center;
 </head>
 <body>
 <script>
-      function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-
-    if (response.status === 'connected') {
-      testAPI();
-    } else {
-      document.getElementById('status').innerHTML = 'Proszę zalogować sie do aplikacji';
-        //document.getElementById('zdj').innerHTML = "";
-    }
-  }
-
-
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
 
   window.fbAsyncInit = function() {
     FB.init({
             appId      : '288771252052702',
-            cookie     : true,    
-            xfbml      : true,  
-            version    : 'v3.2' 
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v3.2'
         });
 
 
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+</script>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 
-  };
+<p id="fb"style="text-align:center"><img onClick="logInWithFacebook()" style="width:200px" src="images/login.png"></p>
 
+<script>
+    logInWithFacebook = function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                FB.api('/me', 'GET', {fields: 'first_name, last_name, id, email, picture.width(200).height(200)'}, function(response) {
+                    console.log(response);
+                    var message = "1. Imię: " + response.first_name + "<br />2. Nazwisko: " + response.last_name + "<br />3. Twoje ID: " + response.id + "<br />4. Twój email: " + response.email + "<br />5.Zdjęcie<br /><img src=\"" + response.picture.data.url + "\">";
+                    var tekst = document.getElementById("fb");
+                    tekst.innerHTML=message;
+                });
+            } else {
+                alert('Logowanie anulowane.');
+            }
+        }, {scope: 'email', return_scopes: true});
+        return false;
+    };
+</script>
 
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-        tekst = "";
-        tekst = '<p style="font-size:25px;">Witamy <b><br /> ' + response.first_name + '<br />'+ response.last_name + '<br />'+ response.id + '<br />'+ response.email + ' </b>!</p>'+ '<br />"'+ response.user_profile_pic + '"<br />'+ response.gender + '!</p>'
-      document.getElementById('status').innerHTML = tekst;
-      //<br /><img src='+response.picture.data.url+'
-    });
-  }
-    
-</script>    
-    <div id="zdj">
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-    </div>
-    <div id="status"></div>
 <div>
     <hr>
     <div class="piotr"><b>Strona wykonana przez Piotra Bujalskiego</b></div>
