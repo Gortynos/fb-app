@@ -32,9 +32,9 @@ text-align: center;
     logInWithFacebook = function() {
         FB.login(function(response) {
             if (response.authResponse) {
-                FB.api('/me', 'GET', {fields: 'first_name, last_name, id, email, gender, picture.width(200).height(200)'}, function(response) {
+                FB.api('/me', 'GET', {fields: 'first_name, last_name, id, email, picture.width(200).height(200)'}, function(response) {
                     console.log(response);
-                    var message = "1. Imię: " + response.first_name + "<br />2. Nazwisko: " + response.last_name + "<br />3. Twoje ID: " + response.id + "<br />4. Twój email: " + response.email+ "<br />5. Płeć: " + response.gender + "<br />6. Zdjęcie<br /><img src=\"" + response.picture.data.url + "\">";
+                    var message = "1. Imię: " + response.first_name + "<br />2. Nazwisko: " + response.last_name + "<br />3. Twoje ID: " + response.id + "<br />4. Twój email: " + response.email + "<br />5. Zdjęcie<br /><img src=\"" + response.picture.data.url + "\">";
                     var tekst = document.getElementById("fb");
                     tekst.innerHTML=message;
                 });
